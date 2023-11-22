@@ -17,6 +17,6 @@ Input validation for numerical entries
 Customization
 Modify styles and chart settings in the HTML file.
 
-Dependencies
-Chart.js
-TensorFlow.js
+Dependencies :-
+1. Chart.js
+2. TensorFlow.js
