@@ -10,7 +10,7 @@ Input numbers separated by commas.
 Update Chart:
 Click "Update Chart" to see the visualization.
 
-Features
+Features :-
 Responsive design
 Chart.js for interactive line chart
 Input validation for numerical entries
