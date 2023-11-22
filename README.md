@@ -4,18 +4,17 @@ SoftGrow! is a lightweight web application for visualizing user-inputted numbers
 Quick Start:-
 follow this link https://parthgaidhani.github.io/example/
 
-Enter Numbers:
+Enter Numbers :- 
 Input numbers separated by commas.
 
 Update Chart:
 Click "Update Chart" to see the visualization.
 
 Features :-
-Responsive design
-Chart.js for interactive line chart
-Input validation for numerical entries
-Customization
-Modify styles and chart settings in the HTML file.
+1.Responsive design
+2. Chart.js for interactive line chart
+3. Input validation for numerical entries Customization
+4.Modify styles and chart settings in the HTML file.
 
 Dependencies :-
 1. Chart.js
