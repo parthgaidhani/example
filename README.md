@@ -2,7 +2,7 @@
 SoftGrow! is a lightweight web application for visualizing user-inputted numbers on a dynamic line chart.
 
 Quick Start:-
-follow this link https://github.io/example/
+follow this link 
 
 Enter Numbers :- 
 Input numbers separated by commas.
