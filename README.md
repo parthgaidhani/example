@@ -1,4 +1,4 @@
-SoftGrow! Chart Visualization
+# SoftGrow! Chart Visualization
 SoftGrow! is a lightweight web application for visualizing user-inputted numbers on a dynamic line chart.
 
 Quick Start
