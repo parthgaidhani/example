@@ -1,7 +1,7 @@
 # SoftGrow! Chart Visualization
 SoftGrow! is a lightweight web application for visualizing user-inputted numbers on a dynamic line chart.
 
-Quick Start
+Quick Start:-
 follow this link https://parthgaidhani.github.io/example/
 
 Enter Numbers:
