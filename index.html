@@ -1,111 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoftGrow!</title>
-    <style>
-        body {
-            background-color: #f8f9fa;
-            color: #212529;
-            font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
-        }
-        
-        canvas {
-            width: 100%;
-            height: auto;
-        }
-        
-        .container {
-            max-width: 480px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 20px;
-            min-height: 40px;
-            min-width: 0;
-            border: 0;
-            border-radius: 100px;
-            cursor: pointer;
-            background-color: #0A66C2;
-            color: #ffffff;
-            font-weight: 600;
-            text-align: center;
-            transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-        }
-        
-        .button:hover,
-        .button:focus { 
-            background-color: #16437E;
-        }
-        
-        .button:active {
-            background: #09223b;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .button:disabled { 
-            cursor: not-allowed;
-            background: rgba(0, 0, 0, 0.08);
-            color: rgba(0, 0, 0, 0.3);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Visualization</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    border: 10px solid #ccc; /* Adding a border around the body */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  #container {
+    width: 90%;
+    max-width: 900px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  #fileInput {
+    margin-bottom: 20px;
+  }
+  .chart {
+    margin-bottom: 40px;
+    animation: slideInLeft 0.5s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>SoftGrow!</h1>
-        <label for="numbers">Enter numbers (Inputs separated by commas):</label>
-        <input type="text" id="numbers" name="numbers">
-        <button class="button" role="button" onclick="updateChart()">Update Chart</button>
-        <canvas id="myChart"></canvas>
-    </div>
+<div id="container">
+  <h1 style="text-align: center; color: #333; margin-bottom: 20px;">Creative Data Visualization</h1>
+  <input type="file" id="fileInput">
+  <div id="lineChart" class="chart"></div>
+  <div id="barChart" class="chart"></div>
+  <div id="scatterPlot" class="chart"></div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var myChart = new Chart(document.getElementById('myChart'), {
-                type: 'line',
-                data: {
-                    labels: [],
-                    datasets: [{
-                        label: 'User Input Numbers',
-                        data: [],
-                        backgroundColor: 'rgba(0, 100, 0, 0.5)',
-                        borderColor: 'rgba(0, 100, 0, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawCharts);
 
-            function updateChart() {
-                var numbers = document.getElementById('numbers').value.split(',').map(Number);
-                if (numbers.some(isNaN)) {
-                    alert('Invalid input! Please enter numbers separated by commas.');
-                    return;
-                }
+function drawCharts() {
+  var fileInput = document.getElementById('fileInput');
 
-                myChart.data.labels = Array.from({ length: numbers.length }, (_, i) => i + 1);
-                myChart.data.datasets[0].data = numbers;
-                myChart.update();
-            }
+  fileInput.addEventListener('change', function(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
 
-            // Optional: You may want to add event listeners instead of inline onclick for better separation of concerns.
-            var updateButton = document.querySelector('.button');
-            updateButton.addEventListener('click', updateChart);
-        });
-    </script>
+    reader.onload = function(event) {
+      var data = new google.visualization.DataTable();
+      var lines = event.target.result.split('\n');
+      
+      // Assuming the first line contains column headers
+      var headers = lines[0].split(',');
+      for (var i = 0; i < headers.length; i++) {
+        data.addColumn('number', headers[i]);
+      }
+      
+      // Adding data rows
+      for (var i = 1; i < lines.length; i++) {
+        var values = lines[i].split(',');
+        if (values.length == headers.length) {
+          data.addRow(values.map(Number));
+        }
+      }
+
+      drawLineChart(data);
+      drawBarChart(data);
+      drawScatterPlot(data);
+    };
+
+    reader.readAsText(file);
+  });
+}
+
+function drawLineChart(data) {
+  var options = {
+    title: 'Line Chart',
+    curveType: 'function',
+    legend: { position: 'bottom' },
+    colors: ['#4285F4']
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('lineChart'));
+  chart.draw(data, options);
+}
+
+function drawBarChart(data) {
+  var options = {
+    title: 'Bar Chart',
+    legend: { position: 'bottom' },
+    colors: ['#0F9D58']
+  };
+
+  var chart = new google.visualization.BarChart(document.getElementById('barChart'));
+  chart.draw(data, options);
+}
+
+function drawScatterPlot(data) {
+  var options = {
+    title: 'Scatter Plot',
+    legend: { position: 'bottom' },
+    hAxis: { title: data.getColumnLabel(0) },
+    vAxis: { title: data.getColumnLabel(1) },
+    colors: ['#DB4437']
+  };
+
+  var chart = new google.visualization.ScatterChart(document.getElementById('scatterPlot'));
+  chart.draw(data, options);
+}
+</script>
 </body>
 </html>
