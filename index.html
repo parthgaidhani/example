@@ -1,136 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data Visualization</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    border: 10px solid #ccc; /* Adding a border around the body */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-  }
-  #container {
-    width: 90%;
-    max-width: 900px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.5s ease-in-out;
-  }
-  #fileInput {
-    margin-bottom: 20px;
-  }
-  .chart {
-    margin-bottom: 40px;
-    animation: slideInLeft 0.5s ease-in-out;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-</style>
-</head>
-<body>
-<div id="container">
-  <h1 style="text-align: center; color: #333; margin-bottom: 20px;">Data Visualization</h1>
-  <input type="file" id="fileInput">
-  <div id="lineChart" class="chart"></div>
-  <div id="barChart" class="chart"></div>
-  <div id="scatterPlot" class="chart"></div>
-</div>
-
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawCharts);
-
-function drawCharts() {
-  var fileInput = document.getElementById('fileInput');
-
-  fileInput.addEventListener('change', function(event) {
-    var file = event.target.files[0];
-    var reader = new FileReader();
-
-    reader.onload = function(event) {
-      var data = new google.visualization.DataTable();
-      var lines = event.target.result.split('\n');
-      
-      // Assuming the first line contains column headers
-      var headers = lines[0].split(',');
-      for (var i = 0; i < headers.length; i++) {
-        data.addColumn('number', headers[i]);
-      }
-      
-      // Adding data rows
-      for (var i = 1; i < lines.length; i++) {
-        var values = lines[i].split(',');
-        if (values.length == headers.length) {
-          data.addRow(values.map(Number));
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualization</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            border: 10px solid #ccc;
+            /* Adding a border around the body */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
         }
-      }
 
-      drawLineChart(data);
-      drawBarChart(data);
-      drawScatterPlot(data);
-    };
+        #container {
+            width: 90%;
+            max-width: 900px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
 
-    reader.readAsText(file);
-  });
-}
+        #fileInput {
+            margin-bottom: 20px;
+        }
 
-function drawLineChart(data) {
-  var options = {
-    title: 'Line Chart',
-    curveType: 'function',
-    legend: { position: 'bottom' },
-    colors: ['#4285F4']
-  };
+        .chart {
+            margin-bottom: 40px;
+            animation: slideInLeft 0.5s ease-in-out;
+        }
 
-  var chart = new google.visualization.LineChart(document.getElementById('lineChart'));
-  chart.draw(data, options);
-}
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
 
-function drawBarChart(data) {
-  var options = {
-    title: 'Bar Chart',
-    legend: { position: 'bottom' },
-    colors: ['#0F9D58']
-  };
+            to {
+                opacity: 1;
+            }
+        }
 
-  var chart = new google.visualization.BarChart(document.getElementById('barChart'));
-  chart.draw(data, options);
-}
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
 
-function drawScatterPlot(data) {
-  var options = {
-    title: 'Scatter Plot',
-    legend: { position: 'bottom' },
-    hAxis: { title: data.getColumnLabel(0) },
-    vAxis: { title: data.getColumnLabel(1) },
-    colors: ['#DB4437']
-  };
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
 
-  var chart = new google.visualization.ScatterChart(document.getElementById('scatterPlot'));
-  chart.draw(data, options);
-}
-</script>
+<body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-61D24JSQ6W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-61D24JSQ6W');
+    </script>
+
+    <div id="container">
+        <h1 style="text-align: center; color: #333; margin-bottom: 20px;">Data Visualization</h1>
+        <input type="file" id="fileInput">
+        <div id="lineChart" class="chart"></div>
+        <div id="barChart" class="chart"></div>
+        <div id="scatterPlot" class="chart"></div>
+    </div>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
+            var fileInput = document.getElementById('fileInput');
+
+            fileInput.addEventListener('change', function (event) {
+                var file = event.target.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function (event) {
+                    var data = new google.visualization.DataTable();
+                    var lines = event.target.result.split('\n');
+
+                    // Assuming the first line contains column headers
+                    var headers = lines[0].split(',');
+                    for (var i = 0; i < headers.length; i++) {
+                        data.addColumn('number', headers[i]);
+                    }
+
+                    // Adding data rows
+                    for (var i = 1; i < lines.length; i++) {
+                        var values = lines[i].split(',');
+                        if (values.length == headers.length) {
+                            data.addRow(values.map(Number));
+                        }
+                    }
+
+                    drawLineChart(data);
+                    drawBarChart(data);
+                    drawScatterPlot(data);
+                };
+
+                reader.readAsText(file);
+            });
+        }
+
+        function drawLineChart(data) {
+            var options = {
+                title: 'Line Chart',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                },
+                colors: ['#4285F4']
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('lineChart'));
+            chart.draw(data, options);
+        }
+
+        function drawBarChart(data) {
+            var options = {
+                title: 'Bar Chart',
+                legend: {
+                    position: 'bottom'
+                },
+                colors: ['#0F9D58']
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('barChart'));
+            chart.draw(data, options);
+        }
+
+        function drawScatterPlot(data) {
+            var options = {
+                title: 'Scatter Plot',
+                legend: {
+                    position: 'bottom'
+                },
+                hAxis: {
+                    title: data.getColumnLabel(0)
+                },
+                vAxis: {
+                    title: data.getColumnLabel(1)
+                },
+                colors: ['#DB4437']
+            };
+
+            var chart = new google.visualization.ScatterChart(document.getElementById('scatterPlot'));
+            chart.draw(data, options);
+        }
+    </script>
 </body>
+
 </html>
