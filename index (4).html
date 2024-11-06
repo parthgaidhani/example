@@ -1,0 +1,220 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Feedback App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-roboto bg-gray-100">
+    <!-- Landing Page -->
+    <div class="min-h-screen flex items-center justify-center bg-blue-500">
+        <div class="text-center text-white">
+            <h1 class="text-4xl font-bold mb-4">Welcome to Employee Feedback App</h1>
+            <div class="space-x-4">
+                <a href="#signup" class="bg-white text-blue-500 px-4 py-2 rounded">Sign Up</a>
+                <a href="#login" class="bg-white text-blue-500 px-4 py-2 rounded">Log In</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Registration -->
+    <div id="signup" class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-6">Sign Up</h2>
+            <form>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Name</label>
+                    <input type="text" class="w-full px-3 py-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Email</label>
+                    <input type="email" class="w-full px-3 py-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Password</label>
+                    <input type="password" class="w-full px-3 py-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Role</label>
+                    <select class="w-full px-3 py-2 border rounded" required>
+                        <option value="employee">Employee</option>
+                        <option value="manager">Manager</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Login -->
+    <div id="login" class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-6">Log In</h2>
+            <form>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Email</label>
+                    <input type="email" class="w-full px-3 py-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Password</label>
+                    <input type="password" class="w-full px-3 py-2 border rounded" required>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded">Log In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Employee Dashboard -->
+    <div id="employee-dashboard" class="min-h-screen flex flex-col items-center justify-center">
+        <div class="bg-white p-8 rounded shadow-md w-full max-w-4xl">
+            <h2 class="text-2xl font-bold mb-6">Employee Dashboard</h2>
+            <div class="space-y-4">
+                <a href="#submit-feedback" class="block bg-blue-500 text-white px-4 py-2 rounded text-center">Submit New Feedback</a>
+                <a href="#view-feedback" class="block bg-blue-500 text-white px-4 py-2 rounded text-center">View Past Feedback</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit New Feedback -->
+    <div id="submit-feedback" class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-6">Submit New Feedback</h2>
+            <form>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Category</label>
+                    <select class="w-full px-3 py-2 border rounded" required>
+                        <option value="work-environment">Work Environment</option>
+                        <option value="job-satisfaction">Job Satisfaction</option>
+                        <option value="management">Management</option>
+                        <option value="benefits">Benefits</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Rating</label>
+                    <select class="w-full px-3 py-2 border rounded" required>
+                        <option value="1">1 - Very Dissatisfied</option>
+                        <option value="2">2 - Dissatisfied</option>
+                        <option value="3">3 - Neutral</option>
+                        <option value="4">4 - Satisfied</option>
+                        <option value="5">5 - Very Satisfied</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Feedback</label>
+                    <textarea class="w-full px-3 py-2 border rounded" rows="4" required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Submit Anonymously</label>
+                    <input type="checkbox" class="mr-2"> Yes
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 rounded">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Manager Dashboard -->
+    <div id="manager-dashboard" class="min-h-screen flex flex-col items-center justify-center">
+        <div class="bg-white p-8 rounded shadow-md w-full max-w-4xl">
+            <h2 class="text-2xl font-bold mb-6">Manager Dashboard</h2>
+            <div class="space-y-4">
+                <a href="#feedback-analytics" class="block bg-blue-500 text-white px-4 py-2 rounded text-center">View Feedback Analytics</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Analytics -->
+    <div id="feedback-analytics" class="min-h-screen flex flex-col items-center justify-center">
+        <div class="bg-white p-8 rounded shadow-md w-full max-w-4xl">
+            <h2 class="text-2xl font-bold mb-6">Feedback Analytics</h2>
+            <div class="space-y-4">
+                <div class="bg-gray-100 p-4 rounded">
+                    <h3 class="text-xl font-bold mb-2">Sentiment Overview</h3>
+                    <div class="flex space-x-4">
+                        <div class="w-1/3 bg-green-500 text-white p-4 rounded text-center">Positive</div>
+                        <div class="w-1/3 bg-yellow-500 text-white p-4 rounded text-center">Neutral</div>
+                        <div class="w-1/3 bg-red-500 text-white p-4 rounded text-center">Negative</div>
+                    </div>
+                </div>
+                <div class="bg-gray-100 p-4 rounded">
+                    <h3 class="text-xl font-bold mb-2">Feedback Category Breakdown</h3>
+                    <div class="flex space-x-4">
+                        <div class="w-1/4 bg-blue-500 text-white p-4 rounded text-center">Work Environment</div>
+                        <div class="w-1/4 bg-blue-500 text-white p-4 rounded text-center">Job Satisfaction</div>
+                        <div class="w-1/4 bg-blue-500 text-white p-4 rounded text-center">Management</div>
+                        <div class="w-1/4 bg-blue-500 text-white p-4 rounded text-center">Benefits</div>
+                    </div>
+                </div>
+                <div class="bg-gray-100 p-4 rounded">
+                    <h3 class="text-xl font-bold mb-2">Trends Over Time</h3>
+                    <div class="w-full bg-gray-300 p-4 rounded text-center">Line Chart Placeholder</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="min-h-screen flex flex-col items-center justify-center">
+        <div class="bg-white p-8 rounded shadow-md w-full max-w-4xl">
+            <h2 class="text-2xl font-bold mb-6">Admin Dashboard</h2>
+            <div class="space-y-4">
+                <a href="#user-management" class="block bg-blue-500 text-white px-4 py-2 rounded text-center">User Management</a>
+                <a href="#system-settings" class="block bg-blue-500 text-white px-4 py-2 rounded text-center">System Settings</a>
+                <a href="#feedback-insights" class="block bg-blue-500 text-white px-4 py-2 rounded text-center">Feedback Insights & Trends</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Management -->
+    <div id="user-management" class="min-h-screen flex flex-col items-center justify-center">
+        <div class="bg-white p-8 rounded shadow-md w-full max-w-4xl">
+            <h2 class="text-2xl font-bold mb-6">User Management</h2>
+            <div class="space-y-4">
+                <div class="bg-gray-100 p-4 rounded">
+                    <h3 class="text-xl font-bold mb-2">User Accounts</h3>
+                    <div class="flex space-x-4">
+                        <div class="w-1/3 bg-gray-300 p-4 rounded text-center">User 1</div>
+                        <div class="w-1/3 bg-gray-300 p-4 rounded text-center">User 2</div>
+                        <div class="w-1/3 bg-gray-300 p-4 rounded text-center">User 3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Settings -->
+    <div id="system-settings" class="min-h-screen flex flex-col items-center justify-center">
+        <div class="bg-white p-8 rounded shadow-md w-full max-w-4xl">
+            <h2 class="text-2xl font-bold mb-6">System Settings</h2>
+            <div class="space-y-4">
+                <div class="bg-gray-100 p-4 rounded">
+                    <h3 class="text-xl font-bold mb-2">Feedback Form Settings</h3>
+                    <div class="flex space-x-4">
+                        <div class="w-1/2 bg-gray-300 p-4 rounded text-center">Add/Remove Categories</div>
+                        <div class="w-1/2 bg-gray-300 p-4 rounded text-center">Update Model Settings</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Insights & Trends -->
+    <div id="feedback-insights" class="min-h-screen flex flex-col items-center justify-center">
+        <div class="bg-white p-8 rounded shadow-md w-full max-w-4xl">
+            <h2 class="text-2xl font-bold mb-6">Feedback Insights & Trends</h2>
+            <div class="space-y-4">
+                <div class="bg-gray-100 p-4 rounded">
+                    <h3 class="text-xl font-bold mb-2">System-Wide Analytics</h3>
+                    <div class="w-full bg-gray-300 p-4 rounded text-center">Analytics Chart Placeholder</div>
+                </div>
+                <div class="bg-gray-100 p-4 rounded">
+                    <h3 class="text-xl font-bold mb-2">Export Reports</h3>
+                    <div class="w-full bg-gray-300 p-4 rounded text-center">Export Button Placeholder</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
